@@ -1,5 +1,7 @@
+import sys
 import modules.items
 import modules.cart
+import signal
 
 
 def validate_add_item_request():
@@ -8,23 +10,34 @@ def validate_add_item_request():
     return item_id, item_quantity
 
 
-def start_app():
-    usecase_dict = {
-        1: modules.items.get_items,
-        2: validate_add_item_request
-    }
+def exit_app():
+    res = input("Apakah Anda yakin ingin keluar dari Aplikasi? y/n ")
+    if res == 'y' or res == "Y":
+        sys.exit()
+    else:
+        start_app()
 
+
+menu_dict = {
+    1: modules.items.get_items,
+    2: validate_add_item_request,
+    0: exit_app
+}
+
+
+def start_app():
     print(
         """
         Selamat Datang di Andy Shop!
         Pilih Menu yang Anda inginkan dengan input nomor menu:
         1. Lihat Semua Produk
         2. Tambahkan Produk ke Keranjang Belanja
+        0. Exit
         """
     )
     menu_number = int(input("Masukkan nomor menu: "))
 
-    print(usecase_dict[menu_number]())
+    print(menu_dict[menu_number]())
 
     start_app()
 
