@@ -22,3 +22,12 @@ def get_products():
 def show_products():
     for i in products:
         print(i)
+
+
+def get_product_by_id(id):
+    try:
+        product = [x for x in products if x.id == id][0]
+        return product
+    except IndexError as e:
+        print("Produk Tidak Ditemukan")
+        raise e
