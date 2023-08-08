@@ -1,21 +1,24 @@
-item_list = [
-    {
-        "id": 1,
-        "name": "Kopi",
-        "price": 10_000
-    },
-    {
-        "id": 2,
-        "name": "Susu",
-        "price": 20_000
-    },
-    {
-        "id": 3,
-        "name": "Teh",
-        "price": 30_000
-    }
-]
+class Product:
+    def __init__(self, id, name, price):
+        self.id = id
+        self.name = name
+        self.price = price
+
+    def __repr__(self):
+        return "% s name:% s price:% s" % (self.id, self.name, self.price)
 
 
-def get_items():
-    return item_list
+products = (
+    Product(1, "Kopi", 10_000),
+    Product(2, "Susu", 20_000),
+    Product(3, "Teh", 30_000)
+)
+
+
+def get_products():
+    return products
+
+
+def show_products():
+    for i in products:
+        print(i)
