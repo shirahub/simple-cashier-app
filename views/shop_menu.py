@@ -6,6 +6,7 @@ import utils.errors
 menu_dict = {
     "1": usecases.offering.show_products,
     "2": usecases.shopping.add_item_to_cart,
+    "3": usecases.shopping.change_item_in_cart,
     "5": usecases.shopping.remove_item_from_cart,
     "0": views.concern.exit_app,
 }
@@ -17,7 +18,7 @@ Pilih Menu yang Anda inginkan dengan input nomor menu:
 2. Tambahkan Produk ke Keranjang Belanja
 """
 
-conditional_menu = """3. 
+conditional_menu = """3. Ganti Produk di Keranjang Belanja
 4. 
 5. Hapus Produk dari Keranjang Belanja
 6.
