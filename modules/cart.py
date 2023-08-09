@@ -33,3 +33,5 @@ class Cart:
     def change_item_qty_in_cart(self, item_id, item_qty):
         self.items[item_id] = item_qty
 
+    def remove_all_items_in_cart(self):
+        self.items.clear()

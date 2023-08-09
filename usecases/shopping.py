@@ -26,7 +26,7 @@ def see_items_in_cart():
     for k, v in cart.get_items().items():
         product = [x for x in modules.items.get_products() if x.id == k][0]
         total = total + v * product.price
-        print("Product: ", product.name, "Quantity: ", v, "Total: ", v * product.price)
+        print("ID:", product.id, "Product: ", product.name, "Quantity: ", v, "Total: ", v * product.price)
     print("Total Seluruhnya: ", total)
 
 
@@ -70,3 +70,9 @@ def change_item_qty_in_cart():
     item_qty = utils.inputs.input_int("Input Jumlah dari Produk: ", "Periksa kembali Input Jumlah Produk Anda.")
     cart.change_item_qty_in_cart(item_qty, item_qty)
     see_items_in_cart()
+
+
+def reset_cart():
+    global cart
+    cart.remove_all_items_in_cart()
+    print("Keranjang Belanja berhasil dikosongkan")

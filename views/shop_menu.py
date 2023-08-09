@@ -9,6 +9,8 @@ menu_dict = {
     "3": usecases.shopping.change_item_in_cart,
     "4": usecases.shopping.change_item_qty_in_cart,
     "5": usecases.shopping.remove_item_from_cart,
+    "6": usecases.shopping.see_items_in_cart,
+    "7": usecases.shopping.reset_cart,
     "0": views.concern.exit_app,
 }
 
@@ -22,8 +24,8 @@ Pilih Menu yang Anda inginkan dengan input nomor menu:
 conditional_menu = """3. Ganti Produk di Keranjang Belanja
 4. Ubah Jumlah Produk di Keranjang Belanja
 5. Hapus Produk dari Keranjang Belanja
-6.
-7.
+6. Lihat Semua Produk di Keranjang Belanja
+7. Hapus Semua Produk dari Keranjang Belanja
 8. Check Out
 """
 
