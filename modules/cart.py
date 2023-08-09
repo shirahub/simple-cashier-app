@@ -29,3 +29,7 @@ class Cart:
 
     def change_item_in_cart(self, prev_item_id, new_item_id):
         self.items[new_item_id] = self.items.pop(prev_item_id)
+
+    def change_item_qty_in_cart(self, item_id, item_qty):
+        self.items[item_id] = item_qty
+

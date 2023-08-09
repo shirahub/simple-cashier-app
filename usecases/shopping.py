@@ -53,7 +53,20 @@ def change_item_in_cart():
         raise Exception("Tidak bisa mengganti barang di Keranjang Belanja dengan barang yang sama")
 
     if cart.is_item_exist_in_cart(new_item_id):
-        raise Exception("Tidak bisa mengganti barang di Keranjang Belanja dengan barang yang sudah ada di Keranjang Belanja")
+        raise Exception(
+            "Tidak bisa mengganti barang di Keranjang Belanja dengan barang yang sudah ada di Keranjang Belanja")
 
     cart.change_item_in_cart(prev_item_id, new_item_id)
+    see_items_in_cart()
+
+
+def change_item_qty_in_cart():
+    global cart
+    item_id = utils.inputs.input_int("Input ID dari Produk yang ingin ditambah: ",
+                                     "Periksa kembali Input ID Produk Anda.")
+
+    if not cart.is_item_exist_in_cart(item_id):
+        raise Exception("Produk tidak ditemukan di Keranjang Belanja")
+    item_qty = utils.inputs.input_int("Input Jumlah dari Produk: ", "Periksa kembali Input Jumlah Produk Anda.")
+    cart.change_item_qty_in_cart(item_qty, item_qty)
     see_items_in_cart()
