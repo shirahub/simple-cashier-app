@@ -28,3 +28,10 @@ def see_items_in_cart():
         total = total + v * product.price
         print("Product: ", product.name, "Quantity: ", v, "Total: ", v * product.price)
     print("Total Seluruhnya: ", total)
+
+
+def remove_item_from_cart():
+    global cart
+    item_id = utils.inputs.input_int("Input ID dari Produk yang ingin dihapus: ", "Periksa kembali Input ID Produk Anda.")
+    cart.remove_item_from_cart(item_id)
+    see_items_in_cart()

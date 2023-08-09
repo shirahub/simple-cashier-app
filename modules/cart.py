@@ -17,3 +17,7 @@ class Cart:
             return True
 
         return False
+
+    def remove_item_from_cart(self, item_id):
+        self.items.pop(item_id)
+
