@@ -11,3 +11,9 @@ class Cart:
 
     def get_items(self):
         return self.items
+
+    def is_cart_items_empty(self):
+        if len(self.items) == 0:
+            return True
+
+        return False
