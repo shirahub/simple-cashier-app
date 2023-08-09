@@ -11,6 +11,7 @@ menu_dict = {
     "5": usecases.shopping.remove_item_from_cart,
     "6": usecases.shopping.see_items_in_cart,
     "7": usecases.shopping.reset_cart,
+    "8": usecases.shopping.check_out,
     "0": views.concern.exit_app,
 }
 

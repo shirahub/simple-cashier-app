@@ -1,6 +1,17 @@
 import modules.items
 import modules.cart
+import modules.transaction
 import utils.inputs
+from datetime import datetime
+
+
+minimum_shopping_total_for_discount = 200_000
+
+discount_dict = {
+    500_000: 0.07,
+    300_000: 0.06,
+    minimum_shopping_total_for_discount: 0.05,
+}
 
 cart = modules.cart.Cart()
 
@@ -76,3 +87,26 @@ def reset_cart():
     global cart
     cart.remove_all_items_in_cart()
     print("Keranjang Belanja berhasil dikosongkan")
+
+
+def check_out():
+    global cart
+    transaction_items = []
+    total = 0
+    for k, v in cart.get_items().items():
+        product = modules.items.get_product_by_id(k)
+        transaction_items.append(modules.transaction.TransactionItem(k, product.price, v))
+        total = total + v * product.price
+    discount = determine_discount(total)
+    transaction = modules.transaction.Transaction(discount, datetime.now(), transaction_items)
+    transaction.calculate_total()
+    print(transaction)
+
+
+def determine_discount(total):
+    if total < minimum_shopping_total_for_discount:
+        return 0
+
+    for k, v in discount_dict.items():
+        if total >= v:
+            return v
