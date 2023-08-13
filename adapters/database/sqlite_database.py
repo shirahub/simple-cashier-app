@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect("testdb1.db")
+conn = sqlite3.connect("andi_shop.db")
 cursor = conn.cursor()
 
 create_table_transaction_items = """
