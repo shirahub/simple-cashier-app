@@ -1,9 +1,10 @@
 import modules.items
 import modules.cart
 import modules.transaction
+import repositories.database.transactions
 import utils.inputs
 from datetime import datetime
-
+import time
 
 minimum_shopping_total_for_discount = 200_000
 
@@ -93,14 +94,21 @@ def check_out():
     global cart
     transaction_items = []
     total = 0
-    for k, v in cart.get_items().items():
-        product = modules.items.get_product_by_id(k)
-        transaction_items.append(modules.transaction.TransactionItem(k, product.price, v))
-        total = total + v * product.price
-    discount = determine_discount(total)
-    transaction = modules.transaction.Transaction(discount, datetime.now(), transaction_items)
-    transaction.calculate_total()
-    print(transaction)
+    try:
+        for k, v in cart.get_items().items():
+            product = modules.items.get_product_by_id(k)
+            transaction_items.append(modules.transaction.TransactionItem(k, product.price, v))
+            total = total + v * product.price
+        discount = determine_discount(total)
+        transaction = modules.transaction.Transaction(discount, time.mktime(datetime.now().timetuple()), transaction_items)
+        transaction.calculate_total()
+        transaction_db = repositories.database.transactions.TransactionDB(transaction)
+        transaction_db.create()
+        reset_cart()
+        print(transaction)
+        print("Check Out Berhasil!")
+    except Exception as e:
+        print(e)
 
 
 def determine_discount(total):

@@ -2,7 +2,7 @@ class TransactionItem:
     def __init__(self, product_id, transaction_created_at_price, quantity):
         self.transaction_id = None
         self.product_id = product_id
-        self.transaction_created_at_price = transaction_created_at_price
+        self.price = transaction_created_at_price
         self.quantity = quantity
 
 
@@ -23,7 +23,7 @@ class Transaction:
     def calculate_total(self):
         self.total = 0
         for i in self.items:
-            self.total = self.total + i.transaction_created_at_price * i.quantity
+            self.total = self.total + i.price * i.quantity
 
         self.final_total = self.total * (1 - self.discount)
 
